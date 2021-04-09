@@ -46,13 +46,13 @@ namespace UnitTestExc.Controllers.Tests.BookServices
 
             var controller = new BookController(mocking.Object);
             // ACT
-            var result = await controller.Index();
+            var result = await controller.GetBookByID(2);
 
             // Assert
              var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<IEnumerable<Book>>(
                 viewResult.ViewData.Model);
-            Assert.Equal(2, model.Count());
+            Assert.NotEqual(0, model.Count());
         }
 
         private List<Book> FakeBookEntity()
